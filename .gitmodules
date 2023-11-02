@@ -4,6 +4,6 @@
 [submodule "util"]
 	path = util
 	url = https://github.com/targetdisk/bash-util.git
-[submodule "trident/setup_scripts"]
-	path = trident/setup_scripts
-	url = https://github.com/targetdisk/targetdisk
+[submodule "targetdisk-efi"]
+	path = targetdisk-efi
+	url = https://github.com/targetdisk/targetdisk-efi
