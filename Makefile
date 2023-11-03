@@ -4,11 +4,9 @@ CFLAGS ?= -pedantic -Wall -Wextra -Werror --ansi
 export CFLAGS ARCH
 
 UNAME = $(shell uname)
-ifeq ($(UNAME),Linux)
-	OPEN=xdg-open
-endif
+OPEN ?= xdg-open
 
-.PHONY: Makefile README
+.PHONY: Makefile README.md
 
 %: Makefile
 	USE_GCC=1 $(MAKE) -C$@ -j$(shell nproc)
@@ -16,6 +14,6 @@ endif
 pub.css:
 	wget https://github.com/manuelp/pandoc-stylesheet/raw/acac36b976966f76544176161ba826d519b6f40c/pub.css
 
-README: pub.css # Requires Pandoc to be installed
-	pandoc README.md -s -c pub.css -o README.html
-	$(OPEN) README.html
+README.html: README.md pub.css # Requires Pandoc to be installed
+	pandoc $< -s -c pub.css -o $@
+	$(OPEN) $@
